@@ -52,7 +52,6 @@ public class ProcessSearchFile {
         String[] splitString = fileAsString.split(" ");
         String methods = "";
         String allmethod = "";
-        //String s = "BByTTheWay";
         Pattern p = Pattern.compile("\\p{Lu}\\p{Ll}*");
         for (int i = 0; i < splitString.length; i++) {
             String nonbreak = "";
