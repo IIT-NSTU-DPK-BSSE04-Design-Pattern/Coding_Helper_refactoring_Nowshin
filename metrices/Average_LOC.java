@@ -22,8 +22,7 @@ public class AverageLOC {
         ProjectReader.fileRead(path, 0);
         for (String filename : ProjectReader.filename) {
             new LineOfCode().countLines(filename);
-        }
-    }
+        }}
 
     private double calculateAverage(int totalClasses, int totalLines) {
         return (double) totalLines / totalClasses;
