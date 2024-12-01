@@ -1,32 +1,42 @@
-
 package metrices;
 
 import IO.ProjectReader;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
-public class Average_LOC {
-    public void totalClass(String path){
-    double average;
-        try{
-    ProjectReader.fileRead(path, 0);
-     int totalClass=ProjectReader.classCount;
-     for(int i=0;i<ProjectReader.filename.size();i++){      
-         new LineOfCode().countLines(ProjectReader.filename.get(i));
-     
-     
-     }
-     
-   average=(float) ((LineOfCode.totalLineOfProject)/(ProjectReader.filename.size()));
-    BigDecimal bd = new BigDecimal(average).setScale(2, RoundingMode.HALF_UP);
-    double val2 = bd.doubleValue();
-            System.out.println("\tAverage LOC in a class:"+val2);
-            ProjectReader.classCount=0;
-            ProjectReader.filename.clear();
-            LineOfCode.totalLineOfProject=0; 
-    }catch(Exception e){
-       e.printStackTrace();
-        
-        
-    }}
+public class AverageLOC {
+
+    public void calculateAverageLOC(String path) {
+        try {
+            prepareProjectData(path);
+            double average = calculateAverage(ProjectReader.filename.size(), LineOfCode.totalLineOfProject);
+            System.out.println("\tAverage LOC in a class: " + formatToTwoDecimalPlaces(average));
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            resetProjectData();
+        }
+    }
+
+    private void prepareProjectData(String path) throws Exception {
+        ProjectReader.fileRead(path, 0);
+        for (String filename : ProjectReader.filename) {
+            new LineOfCode().countLines(filename);
+        }
+    }
+
+    private double calculateAverage(int totalClasses, int totalLines) {
+        return (double) totalLines / totalClasses;
+    }
+
+    private String formatToTwoDecimalPlaces(double value) {
+        BigDecimal bd = new BigDecimal(value).setScale(2, RoundingMode.HALF_UP);
+        return bd.toString();
+    }
+
+    private void resetProjectData() {
+        ProjectReader.classCount = 0;
+        ProjectReader.filename.clear();
+        LineOfCode.totalLineOfProject = 0;
+    }
 }
