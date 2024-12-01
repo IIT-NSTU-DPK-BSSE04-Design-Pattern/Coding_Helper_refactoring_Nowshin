@@ -26,23 +26,18 @@ public class GrepContent {
             ++i;
         } while (openBraces == 0 || openBraces != closedBraces);
         }catch(Exception e){
-        //  System.out.println(e);
         }
         result = fileContent.substring(start, i);
-
-        // System.out.println("" + result);
         return result;
     }
 
 
     public int getLineNumber(String word, String file, int preLine) throws FileNotFoundException, IOException {
-    //    System.out.println(word);
         int lineNumber = 0;
         try (LineNumberReader reader = new LineNumberReader(new FileReader(file))) {
             
             for (String line; (line = reader.readLine()) != null;) {
                 if (reader.getLineNumber() > preLine && line.contains(word)) {
-                    // System.out.println(reader.getLineNumber() + ": " + line);
                     lineNumber = reader.getLineNumber();
                     break;
 
