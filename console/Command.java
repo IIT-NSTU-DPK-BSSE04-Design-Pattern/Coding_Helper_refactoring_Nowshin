@@ -26,9 +26,6 @@ public class Command {
     public static String forwardDir;
     String directoryName = null;
     public static String currentPath = null;
-    //  boolean pexist = false;
-    //String project;
-
     Scanner scan = new Scanner(System.in);
 
     public void command() throws IOException {
@@ -77,9 +74,7 @@ public class Command {
 
             } else if (choice.equalsIgnoreCase("search") | choice.equalsIgnoreCase("3")) {
                 System.out.print("\tWrite \"query\" and projectname:");
-                //   System.out.println("x=" + currentPath);
                 Search(currentPath);
-                //  projectPath();
             } else if (choice.equalsIgnoreCase("4")| choice.equalsIgnoreCase("Metrics")) {
                 System.out.println("\t4.Metrics\n\t\tJava File Count-->fc\n\t\tMethod  Count-->mc\n\t\tLine of Code-->loc\n\t\tAverage LOC of a class");
 
@@ -102,9 +97,7 @@ public class Command {
                 String result;
 
                 String newPath = currentPath;
-                // System.out.println("newpath=" + newPath);
                 result = backDirectory(newPath);
-                //   }
             } else if (Pattern.matches("(?i)\\bcd\\b\\s*\\\\", choice)) {
                 currentPath = currentPath.substring(0, 3);
 
@@ -115,14 +108,12 @@ public class Command {
                     checkFileExist(drv.group(1).toUpperCase());
                 }
             } else if (choice.equalsIgnoreCase("dir")) {
-                //  String path;             
                 String path;
                 if (currentPath == null) {
                     path = FileSystems.getDefault().getPath("").toAbsolutePath().toString();
                 } else {
 
                     path = currentPath;
-                    //    System.out.println(currentPath);
                 }
                 listDirectory(path + "\\");
             } else if (specialvalue == false && wardval == true) {
@@ -150,8 +141,7 @@ public class Command {
 
     }
 
-    public void getMethod(String path) throws IOException {      //Count total number of methods of a project/java file
-        
+    public void getMethod(String path) throws IOException {
         String newpath = pathGenerate(path);
         try {
             System.out.print("\tProject\\File Name:");

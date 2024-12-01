@@ -1,0 +1,15 @@
+Design Pattern: Singleton
+Location: ProjectReader
+Description: Ensures a single instance of ProjectReader is used throughout the application, managing global state and configurations.
+
+Design Pattern: Strategy
+Location: Search
+Description: Encapsulates different strategies for file processing (e.g., getFile for individual files and processProject for directories), allowing interchangeable processing logic.
+
+Design Pattern: Template Method
+Location: MethodCount (Potential Application)
+Description: Can be applied to define the skeleton of file-processing logic while allowing subclasses to implement specific steps for different file types.
+
+Design Pattern: Factory Method
+Location: AverageLOC and MethodCount
+Description: Could be used to create instances of project readers or line counters dynamically based on the type of project being processed.
